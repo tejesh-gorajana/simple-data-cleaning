@@ -103,9 +103,6 @@ data['College_Id'] = data['College_Id'].astype(str).apply(lambda x: clean_id(x) 
 data['Email'] = data.apply(lambda row: clean_email(row['Email'], row), axis=1)
 data['Phone'] = data['Phone'].astype(str).apply(lambda x: clean_phone(x) if pd.notna(x) else x)
 
-print("cleaned data:")
-print(data)
-
 df.replace(r'^\s*$', pd.NA, regex=True, inplace=True)
 b_count = data.isna().sum().sum()
 print(f"Total blank values after cleaning data: {b_count}")
