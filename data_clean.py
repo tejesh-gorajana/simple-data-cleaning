@@ -96,12 +96,12 @@ def clean_phone(phone):
 
 data['SurName'] = data['SurName'].astype(str).apply(clean_name)
 data['FirstName'] = data['FirstName'].astype(str).apply(clean_name)
-data['DOB'] = data['DOB'].astype(str).apply(lambda x: clean_DOB(x) if pd.notna(x) else x)
-data['Branch'] = data['Branch'].astype(str).apply(lambda x: clean_branch(x) if pd.notna(x) else x)
-data['Year'] = data['Year'].astype(str).apply(lambda x: clean_year(x) if pd.notna(x) else x)
-data['College_Id'] = data['College_Id'].astype(str).apply(lambda x: clean_id(x) if pd.notna(x) else x)
+data['DOB'] = data['DOB'].astype(str).apply(clean_DOB)
+data['Branch'] = data['Branch'].astype(str).apply(clean_branch)
+data['Year'] = data['Year'].astype(str).apply(clean_year)
+data['College_Id'] = data['College_Id'].astype(str).apply(clean_id)
 data['Email'] = data.apply(lambda row: clean_email(row['Email'], row), axis=1)
-data['Phone'] = data['Phone'].astype(str).apply(lambda x: clean_phone(x) if pd.notna(x) else x)
+data['Phone'] = data['Phone'].astype(str).apply(clean_phone)
 
 df.replace(r'^\s*$', pd.NA, regex=True, inplace=True)
 b_count = data.isna().sum().sum()
